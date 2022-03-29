@@ -56,7 +56,9 @@ while (started) {
 // Game ended
 if (!started && score > 0) {
 
-    // Display score   
+    // Display score every 3 seconds
     basic.showNumber(score)
+    pause(3000)
+
 
 }
