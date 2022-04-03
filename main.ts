@@ -21,17 +21,26 @@ basic.forever(function() {
         input.onGesture(Gesture.Shake, function () {
             started = true
             radio.sendValue("start", 1)
+            basic.showLeds(`
+            . . . . .
+            . . . . .
+            . . # . .
+            . . . . .
+            . . . . .
+            `)
         })
 
-    } else {
-        basic.showLeds(`
-        . . . . .
-        . . . . .
-        . . # . .
-        . . . . .
-        . . . . .
-        `)
     }
+})
+
+basic.forever(function () {
+    // Checking if the game is over
+    radio.onReceivedValue(function (name: string, value: number) {
+        if (name === "score") {
+            started = false
+            score = value
+        }
+    })
 })
 
 
@@ -55,13 +64,6 @@ basic.forever(function() {
         }
 
         radio.sendValue("dir", dir)
-
-        // Checking if the game is over
-        radio.onReceivedValue(function (name: string, value: number) {
-            if (name === "score") {
-                started = false
-            }
-        })
 
     }
 
