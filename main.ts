@@ -15,7 +15,7 @@ let score = 0
 
 // Checking when to begin game
 basic.forever(function() {
-    if (!started && score === 0) {
+    if (!started) {
 
         // Start the game on shake
         input.onGesture(Gesture.Shake, function () {
@@ -75,9 +75,5 @@ basic.forever(function() {
         basic.showNumber(score)
         pause(3000)
 
-
     }
-
 })
-
-
